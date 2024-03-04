@@ -23,6 +23,7 @@ const theme = extendTheme({
 });
 
 function App() {
+  localStorage.setItem("chakra-ui-color-mode", "dark");
   return (
     <ChakraProvider theme={theme}>
       <Home />
