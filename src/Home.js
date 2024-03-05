@@ -47,9 +47,15 @@ const workExperiences = [
     timeframe: "Botni.Vision, Inc. — 2020 - 202X — Montreal, QC",
     description: (
       <>
-        Designing and building the next generation of media understanding
-        applications and services. Check out{" "}
-        <Links href="https://rivr.stream">Rivr</Links> to see where that's at.
+        After reconnecting with my best friend Brandon, who is now our CEO, we
+        started working on a solution to reduce the time needed to find the most
+        valuable parts of long-form video. In doing so, we ended up building a
+        media understanding engine which goes well beyond just getting cool
+        clips. Creators and organizations can now search through video to find
+        anything they need, quickly and cost effectively. So now I'm designing
+        and building the next generation of media understanding applications and
+        services. Check out <Links href="https://rivr.stream">Rivr</Links> to
+        see where that's at.
       </>
     ),
   },
