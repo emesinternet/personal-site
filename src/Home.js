@@ -62,14 +62,6 @@ const workExperiences = [
       "Special thanks to: 2TD, Volt, Ryan Browne, Danny Johnson, Max Mayeri, and Henry Lu.",
   },
   {
-    title: "Artist Manager / Multimedia Designer",
-    timeframe: "Freelance — 2014 - 2020 — Los Angeles, CA",
-    description:
-      "When I moved to Los Angeles in 2014, I wanted to apply my project management and design skills to something outside of gaming. At first, I was designing website and cover art for mostly EDM artists, but then I picked up artist management and started managing several Dubstep DJs. This was an incredible experience and taught me so much amount about the music industry, rights, royalties, touring, events, and so much more. I am forever grateful for the experience and to the guys who let me do my best to lead them forward. I even had Diplo and Skrillex at my house for a party once! That was pretty neat.",
-    specialThanks:
-      "Special thanks to: 2TD, Volt, Ryan Browne, Danny Johnson, Max Mayeri, and Henry Lu.",
-  },
-  {
     title: "A&R / Multimedia Designer",
     timeframe: "Buygore Records — 2015 - 2017 — Los Angeles, CA",
     description:
