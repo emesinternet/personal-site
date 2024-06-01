@@ -8,15 +8,8 @@ import {
   Center,
   Link,
   HStack,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button,
-  Box,
-  MenuDivider,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+
 import Marc from "./assets/marc.jpg";
 
 const Links = ({ children, href, ...props }) => {
@@ -122,43 +115,6 @@ function Home() {
               alt="Marc"
               mb={4}
             />
-            <Menu placement="bottom-end">
-              <MenuButton
-                size={"sm"}
-                as={Button}
-                rightIcon={<ChevronDownIcon />}
-                ml={4}
-              >
-                Connect
-              </MenuButton>
-              <MenuList>
-                <MenuItem
-                  as="a"
-                  href="https://twitter.com/marcfromrivr"
-                  isExternal
-                >
-                  Twitter
-                </MenuItem>
-                <MenuItem
-                  as="a"
-                  href="https://twitch.tv/marcfromrivr"
-                  isExternal
-                >
-                  Twitch
-                </MenuItem>
-                <MenuItem
-                  as="a"
-                  href="https://www.linkedin.com/in/msinger1/"
-                  isExternal
-                >
-                  LinkedIn
-                </MenuItem>
-                <MenuDivider />
-                <MenuItem as="a" href="mailto:marc@rivr.stream" isExternal>
-                  Email
-                </MenuItem>
-              </MenuList>
-            </Menu>
           </HStack>
           <Heading as="h1" size="lg">
             Hey there, Marc here 👋

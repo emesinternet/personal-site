@@ -1,6 +1,9 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@fontsource/inter";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home";
+import WASaverPolicy from "./pages/WASaverPolicy";
+import Layout from "./components/Layout";
 
 const theme = extendTheme({
   initialColorMode: "dark",
@@ -26,7 +29,26 @@ function App() {
   localStorage.setItem("chakra-ui-color-mode", "dark");
   return (
     <ChakraProvider theme={theme}>
-      <Home />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/privacy-policies"
+            element={
+              <Layout>
+                <WASaverPolicy />
+              </Layout>
+            }
+          />
+        </Routes>
+      </Router>
     </ChakraProvider>
   );
 }
