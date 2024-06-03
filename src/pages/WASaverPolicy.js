@@ -13,7 +13,10 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  HStack,
+  Button,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const WAPrivacyPolicy = () => {
   return (
@@ -27,9 +30,19 @@ const WAPrivacyPolicy = () => {
         <Accordion allowToggle w="full" allowMultiple defaultIndex={[0]}>
           <AccordionItem>
             <AccordionButton py={4}>
-              <Box flex="1" textAlign="left">
+              <HStack flex="1" textAlign="left" justify={"space-between"}>
                 <Heading size="md">WeakAura Saver Chrome Extension</Heading>
-              </Box>
+                <Button
+                  mr={4}
+                  size="sm"
+                  rightIcon={<ExternalLinkIcon />}
+                  as="a"
+                  href="https://chromewebstore.google.com/detail/jddhepnflgpcdmcmodhceabhjkbpicef"
+                  target="_blank"
+                >
+                  Download
+                </Button>
+              </HStack>
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pb={4}>
