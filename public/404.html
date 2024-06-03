@@ -8,11 +8,12 @@
   <body>
     <script>
       // Redirect to the correct route
-      window.location.href =
+      window.location.replace(
         "/" +
-        window.location.pathname +
-        window.location.search +
-        window.location.hash;
+          window.location.pathname +
+          window.location.search +
+          window.location.hash
+      );
     </script>
   </body>
 </html>
