@@ -8,9 +8,15 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainMenu = () => {
+  const navigate = useNavigate();
+
+  const handleMenuClick = (page) => {
+    navigate(`/?page=${page}`);
+  };
+
   return (
     <Flex
       as="nav"
@@ -25,7 +31,7 @@ const MainMenu = () => {
           Connect
         </MenuButton>
         <MenuList>
-          <MenuItem as={Link} to="/">
+          <MenuItem as="a" onClick={() => handleMenuClick("home")}>
             Home
           </MenuItem>
           <MenuDivider />
@@ -47,7 +53,7 @@ const MainMenu = () => {
             Email
           </MenuItem>
           <MenuDivider />
-          <MenuItem as={Link} to="/privacy-policies">
+          <MenuItem as="a" onClick={() => handleMenuClick("privacy-policies")}>
             Privacy Policies
           </MenuItem>
         </MenuList>

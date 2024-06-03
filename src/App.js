@@ -1,8 +1,6 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@fontsource/inter";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import WASaverPolicy from "./WASaverPolicy";
+import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/Layout";
 
 const theme = extendTheme({
@@ -30,24 +28,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout>
-                <Home />
-              </Layout>
-            }
-          />
-          <Route
-            path="/privacy-policies"
-            element={
-              <Layout>
-                <WASaverPolicy />
-              </Layout>
-            }
-          />
-        </Routes>
+        <Layout />
       </Router>
     </ChakraProvider>
   );
