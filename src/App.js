@@ -1,8 +1,8 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@fontsource/inter";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import WASaverPolicy from "./pages/WASaverPolicy";
+import WASaverPolicy from "./WASaverPolicy";
 import Layout from "./components/Layout";
 
 const theme = extendTheme({
