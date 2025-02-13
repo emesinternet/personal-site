@@ -116,7 +116,6 @@ const ExperienceItem = ({ title, timeframe, description, specialThanks }) => {
       w="full"
       borderBottom="1px solid"
       borderColor="whiteAlpha.200"
-      py={8}
       _hover={{ bg: "whiteAlpha.50" }}
       transition="all 0.2s"
     >
@@ -124,10 +123,11 @@ const ExperienceItem = ({ title, timeframe, description, specialThanks }) => {
         justify="space-between"
         onClick={onToggle}
         cursor="pointer"
+        align={"center"}
         w="full"
         px={4}
       >
-        <Box>
+        <Box py={8}>
           <Text fontFamily="mono" fontSize="xl" letterSpacing="-0.02em">
             {title}
           </Text>
@@ -137,13 +137,13 @@ const ExperienceItem = ({ title, timeframe, description, specialThanks }) => {
         </Box>
         <IconButton
           icon={isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          variant="ghost"
+          variant="unstyled"
           size="sm"
           aria-label="Toggle details"
         />
       </Flex>
       <Collapse in={isOpen}>
-        <Box pt={8} px={4}>
+        <Box px={4} pb={8}>
           <Text fontSize="md" lineHeight="tall" sx={{ textWrap: "pretty" }}>
             {description}
           </Text>
@@ -167,17 +167,40 @@ function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box minH="100vh" py={16}>
-      <Container maxW="8xl">
+    <Box minH="100vh" py={12}>
+      <Container maxW="8xl" pb={6}>
         <Flex direction="column" gap={20}>
-          <Flex justify="space-between" align="center">
-            <HStack spacing={5}>
+          <Flex
+            justify="space-between"
+            align="center"
+            columnGap={8}
+            rowGap={4}
+            wrap={"wrap-reverse"}
+            height={0}
+            mt={48}
+            mb={-32}
+            alignItems={"start"}
+          >
+            <HStack spacing={5} mx={4}>
               <Image borderRadius="full" boxSize="4rem" src={Marc} alt="Marc" />
-              <Text fontFamily="mono" fontSize="3xl">
+              <Text
+                fontFamily="mono"
+                fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+              >
                 Marc Singer
               </Text>
             </HStack>
-            <HStack spacing={1}>
+            <HStack spacing={1} ml={4} justify={"end"} flexDir={"column"}>
+              <IconButton
+                icon={
+                  colorMode === "dark" ? <Sun size={16} /> : <Moon size={16} />
+                }
+                onClick={toggleColorMode}
+                variant="ghost"
+                size="sm"
+                aria-label="Toggle color mode"
+                borderRadius={"full"}
+              />
               <SocialIcon
                 icon={Twitter}
                 href="https://twitter.com/marcfromrivr"
@@ -198,16 +221,6 @@ function Home() {
                 href="mailto:marc@rivr.stream"
                 label="Email"
               />
-              <IconButton
-                icon={
-                  colorMode === "dark" ? <Sun size={16} /> : <Moon size={16} />
-                }
-                onClick={toggleColorMode}
-                variant="ghost"
-                size="sm"
-                aria-label="Toggle color mode"
-                borderRadius={"full"}
-              />
             </HStack>
           </Flex>
 
@@ -219,6 +232,7 @@ function Home() {
               letterSpacing="tight"
               lineHeight="1.2"
               sx={{ textWrap: "balance" }}
+              mr={4}
             >
               Co-founder and Chief Experience Officer at{" "}
               <Link href="https://rivr.stream" isExternal color="accent.400">

@@ -6,13 +6,21 @@ const theme = extendTheme({
       body: {
         bg: props.colorMode === "dark" ? "#0A0A0A" : "white",
         color: props.colorMode === "dark" ? "gray.100" : "gray.800",
-        backgroundImage:
-          props.colorMode === "dark"
-            ? `radial-gradient(circle at 100% 100%, rgba(228, 58, 25, 0.05) 0%, transparent 50%), 
-             radial-gradient(circle at 0% 0%, rgba(228, 58, 25, 0.03) 0%, transparent 50%)`
-            : `radial-gradient(circle at 100% 100%, rgba(228, 58, 25, 0.08) 0%, transparent 50%), 
-             radial-gradient(circle at 0% 0%, rgba(228, 58, 25, 0.05) 0%, transparent 50%)`,
-        backgroundAttachment: "fixed",
+        position: "relative",
+        _before: {
+          content: '""',
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          bgGradient:
+            props.colorMode === "dark"
+              ? "linear(45deg, rgba(228, 58, 25, 0.15), transparent 40%)"
+              : "linear(45deg, rgba(228, 58, 25, 0.08), transparent 40%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        },
       },
     }),
   },
