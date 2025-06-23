@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLink } from "lucide-react";
 
-const WAPrivacyPolicy = () => {
+const WASaverPolicy = () => {
   return (
     <Container maxW="5xl" py={8}>
       <VStack spacing={8} align="stretch">
@@ -186,4 +186,4 @@ const WAPrivacyPolicy = () => {
   );
 };
 
-export default WAPrivacyPolicy;
+export default WASaverPolicy;
