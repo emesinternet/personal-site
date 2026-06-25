@@ -331,7 +331,7 @@ function initHeroShader() {
       glitch: 0,
       scanlines: 1,
       brightness: 0.98,
-      curvature: 0.16
+      curvature: 0
     }),
     getLocations: (gl, program) => ({
       time: gl.getUniformLocation(program, "uTime"),
