@@ -1,104 +1,102 @@
 # Personal Site Copy
 
-Source extracted from `src` and `public` on June 22, 2026.
+Current public copy for `marcsinger.xyz`.
 
-## Site Metadata
+## Metadata
 
-Title: Marc Singer
+Title: Marc Singer | Custom Software, AI, and Business Systems
 
-Description: Marc Singer's personal website
+Description: Marc Singer builds custom software, AI systems, websites, office technology, automation, and practical business systems for small businesses.
 
-Manifest short name: Marc Singer
+Social description: Custom software, AI systems, websites, automation, and technical leadership shaped around your business.
 
-Manifest name: Marc Singer personal website
+Booking link: https://calendar.app.google/7EfzDTAjextUhK6b7
 
-## Homepage
+## Hero
 
-Name: Marc Singer
+Hi, I'm Marc, your new favorite computer guy.
 
-Hero:
+## About
 
-Co-founder and Chief Experience Officer at Rivr, building the next generation of media understanding tools.
+About me
 
-Primary link:
+I have 21 years of experience across technical and design work, including previously co-founding a venture-backed tech company. I've worked in both blue-collar and white-collar environments, where the challenges rarely look the same twice. I am comfortable walking into unfamiliar situations, learning the ropes, and building practical systems that solve real problems.
 
-- Rivr: https://rivr.stream
+## Industry Experience
 
-Social links:
+I have unique experience in a range of industries. Ask me about it over an intro call.
 
-- Twitter: https://twitter.com/marcfromrivr
-- Twitch: https://twitch.tv/marcfromrivr
-- LinkedIn: https://www.linkedin.com/in/msinger1/
-- Email: marc@rivr.stream
+- Tech
+- Startups
+- Web Development
+- Graphic Design
+- Game Development
+- Agriculture
+- Multimedia Production
+- Entertainment
+- Construction
 
-Section label:
+## Services
 
-Experience
+Custom solutions and AI systems shaped around your business.
 
-## Experience
+- Business AI: Practical AI systems built around how your business actually works.
+- Website Development: Fast, clean websites that make your business easier to understand.
+- Custom Software: Purpose-built tools for the problems off-the-shelf software cannot solve.
+- Office Technology Setup: Computers, networks, devices, and systems set up the right way.
+- Technical Advisory: Clear technical answers when you need a trusted second brain.
+- Business Process Automation: Automations that reduce busywork and keep daily operations moving.
 
-### Co-founder / Chief Xperience Officer
+## Ways To Work
 
-Botni.Vision, Inc. - 2020 - 202X - Montreal, QC
+The future of your business starts today.
 
-After reconnecting with my best friend Brandon, who's now our CEO, we started working on a solution to reduce the time needed to find the most valuable parts of long-form video. In doing so, we ended up building a media understanding engine that goes well beyond just getting cool clips. Creators and organizations can now search through video to find anything they need, quickly and cost-effectively. Now I'm designing and building the next generation of media understanding applications and services. Check out Rivr to see where that's at.
+Projects: Focused builds for specific business problems, from websites, custom software, AI, and automation to BusinessOS deployments.
 
-Link:
+Pricing: Pricing based on scope and scale.
 
-- Rivr: https://rivr.stream
+Fractional CTO: Part-time, on-call technical leadership for small businesses. Software, hardware, AI, and systems guidance without hiring a full-time technical employee.
 
-### Artist Manager / Multimedia Designer
+Pricing: Quarterly contracts paid monthly. Starting at $5000/m.
 
-Freelance - 2014 - 2020 - Los Angeles, CA
+Tooltip: Expert experience at 1/4 the price of a full-time hire, without needing to provide company benefits.
 
-When I moved to Los Angeles in 2014, I wanted to apply my project management and design skills to something outside of gaming. At first, I was designing websites and cover art for mostly EDM artists, but then I picked up artist management and started managing several Dubstep DJs. This was an incredible experience that taught me so much about the music industry: rights, royalties, touring, events, and more. I'm forever grateful for the experience and to the guys who let me do my best to lead them forward. I even had Diplo and Skrillex at my house for a party once! That was pretty neat.
+## Practical Questions
 
-Special thanks to: 2TD, Volt, Ryan Browne, Danny Johnson, Max Mayeri, and Henry Lu.
+Does my business need AI?
 
-### A&R / Multimedia Designer
+Often, no. That can be a good thing, because it usually means we can get to a reliable solution faster. Sometimes the answer is yes, but not always in the way you might expect. AI can be useful, but it can also make mistakes, so part of my job is helping you understand where it makes sense and where it does not.
 
-Buygore Records - 2015 - 2017 - Los Angeles, CA
+Do you work with non-technical business owners?
 
-Despite having worked in games for years, I found myself back at the intern level in the music industry. Getting your foot in the door is always the hardest part, and people who stick their nose up at opportunities like these are the worst. After spending some time designing cover art for upcoming releases, I earned the trust of the label head to start vetting and submitting demos that I thought were promising. This unlocked a whole world of opportunities for me in the EDM scene that pushed me into artist management.
+Yes, and they are often the people with the most interesting problems. I explain options clearly and can help anyone understand complex technology by making it relatable.
 
-Special thanks to: Asaf Borger, Steven Pahel, Christina Discon, and Nappy.
+Do you only build AI projects?
 
-### Creative Producer
+No. Some of the clearest, most reliable, and most scalable solutions often do not include AI. I use the term "Practical AI" because the first instinct can be to throw a hammer at a nail-sized problem.
 
-Trendy Entertainment, LLC (Chromatic Games) - 2014 - 2015 - Gainesville, FL
+What do you mean by Practical AI?
 
-After the indie success of Dungeon Defenders, I was called in to help complete and release a new version on a very short timeline with a team of mostly junior developers. Despite my poor experience at Trendy, I took on the job as a contractor with no intention of returning to the company. I loved the game so much and knew it so well that I wanted to try and keep the magic of Dungeon Defenders going. I did my best while pushing back against shareholder and publisher interests that led to initial poor reviews.
+Practical AI means I only use automation when it improves a real process, reduces work, and is safe enough for your business to trust.
 
-### Product Manager (NA/EU)
+Can you work with existing software?
 
-Nival - 2013 - 2014 - Miami, FL
+Usually, yes. My job is not to replace everything by default. It is to assess what you already have, explain the options, and find the best path to leave your business in a better position than it was before.
 
-This was a short but interesting experience working for a Russian company as one of the only Americans. My emails were in Russian, calls were in Russian, and they even set me up with a Russian language teacher. I took a trip to Moscow and St. Petersburg to meet the team. My job was to help bring their games to North American and European audiences. The main game I worked on was Prime World, which had some great city-building RPG elements, but the session-based MOBA gameplay just couldn't compete with DotA or League, so it didn't do particularly well.
+What about websites and design work?
 
-### Lead Gameplay Designer / Gameplay Producer
+Yes. I can design and build custom websites and applications, whether they need to be publicly available online or used internally by your team. Tell me what you are trying to achieve, and we can choose the right solution from there.
 
-Trendy Entertainment, LLC (Chromatic Games) - 2010 - 2013 - Gainesville, FL
+For pure graphic design, I act as a project manager, connecting you with talented designers, and guiding you through the process.
 
-I played a major role in the success of Dungeon Defenders for XBLA, PSN, and PC. My job was to design and oversee production of nearly all gameplay aspects. I worked closely with every department, often outside my responsibilities - Trendy was a startup after all. I learned Unreal Engine from scratch, built a QA team, designed and balanced gameplay, did voice-overs, made trailers, and spent many nights sleeping under my desk. The head of the company was verbally abusive, my job was constantly threatened, and eventually the truth came out in a Kotaku article calling it 'The Video Game Studio from Hell.'
+## Side Projects
 
-### Web Master / Technical Designer
+Side Projects
 
-University of Florida - 2009 - 2010 - Gainesville, FL
+I like building useful things that start as personal needs that turn into practical tools.
 
-This was kind of a weird one, mainly because I didn't go to the University of Florida. Actually, I was probably the only person working at the Department of Chemistry without a college degree. Nevertheless, they needed a techie, and I needed a job. I maintained intranets, websites, and publication libraries. It was pretty neat but not particularly satisfying.
+BusinessOS: An AI-enabled operating system I developed for businesses that need something on-premises, secure, and remotely accessible. It helps organize documents, notes, tasks, automations, and business information in one place, so your team can get answers faster, reduce repetitive work, and keep things moving. Talk to it like you would any other employee. Best of all, your data never leaves your office.
 
-### Computer Technician / Event Coordinator
+GardenGardenGarden: Discover seeds, plants, trees, mushrooms, and gardening supplies from trusted providers. Save favorites, build a seed vault, and track price and stock history.
 
-Nexus Gaming Center - 2008 - 2009 - Boynton Beach, FL
-
-My first tech job was at a LAN center / Arcade. As a teenager, this was a pretty sweet gig - unlimited energy drinks, free games, and building/repairing computers for minimum wage. I honestly didn't even care about the money; it was just a great place with an amazing community. It wasn't all fun and games though! I got to create custom World of Warcraft servers and script boss fights for internal events. That specific experience really helped me land my first game industry jobs.
-
-## Navigation
-
-Connect
-
-- Home
-- Twitter
-- Twitch
-- LinkedIn
-- Email
+GardenGardenGarden link: https://gardengardengarden.garden?utm_source=marcsinger.xyz

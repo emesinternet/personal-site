@@ -2,7 +2,7 @@
   "name": "personal-site",
   "version": "0.1.1",
   "private": true,
-  "description": "Static personal site.",
+  "description": "Static personal site for Marc Singer.",
   "scripts": {
     "start": "npx --yes serve .",
     "preview": "npx --yes serve ."
