@@ -154,11 +154,10 @@ function initReveals() {
 function createShaderRenderer({
   canvas,
   sources,
+  label,
   contextType,
   contextOptions,
-  compileError,
-  linkError,
-  getSettings,
+  settings,
   getLocations,
   draw
 }) {
@@ -175,7 +174,7 @@ function createShaderRenderer({
     gl.compileShader(shader);
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      throw new Error(gl.getShaderInfoLog(shader) || compileError);
+      throw new Error(gl.getShaderInfoLog(shader) || `${label} shader compile failed`);
     }
 
     return shader;
@@ -188,7 +187,7 @@ function createShaderRenderer({
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      throw new Error(gl.getProgramInfoLog(program) || linkError);
+      throw new Error(gl.getProgramInfoLog(program) || `${label} shader link failed`);
     }
 
     return program;
@@ -219,7 +218,6 @@ function createShaderRenderer({
     gl.STATIC_DRAW
   );
 
-  const settings = getSettings();
   const locations = {
     position: gl.getAttribLocation(program, "aPosition"),
     resolution: gl.getUniformLocation(program, "uResolution"),
@@ -313,6 +311,7 @@ function initHeroShader() {
   createShaderRenderer({
     canvas,
     sources: window.terminalShaderSources,
+    label: "Terminal",
     contextType: "webgl",
     contextOptions: {
       alpha: true,
@@ -320,9 +319,7 @@ function initHeroShader() {
       depth: false,
       powerPreference: "low-power"
     },
-    compileError: "Shader compile failed",
-    linkError: "Shader link failed",
-    getSettings: () => ({
+    settings: {
       opacity: 0.19,
       scale: 1.4,
       digitSize: 1.75,
@@ -332,7 +329,7 @@ function initHeroShader() {
       scanlines: 1,
       brightness: 0.98,
       curvature: 0
-    }),
+    },
     getLocations: (gl, program) => ({
       time: gl.getUniformLocation(program, "uTime"),
       scale: gl.getUniformLocation(program, "uScale"),
@@ -391,6 +388,7 @@ function initAuroraShaders() {
     createShaderRenderer({
       canvas,
       sources: window.auroraShaderSources,
+      label: "Aurora",
       contextType: "webgl2",
       contextOptions: {
         alpha: true,
@@ -399,14 +397,12 @@ function initAuroraShaders() {
         premultipliedAlpha: true,
         powerPreference: "low-power"
       },
-      compileError: "Aurora shader compile failed",
-      linkError: "Aurora shader link failed",
-      getSettings: () => ({
+      settings: {
         amplitude: Number(canvas.dataset.amplitude || 0.74),
         blend: Number(canvas.dataset.blend || 0.82),
         speed: Number(canvas.dataset.speed || 0.46),
         colorStops: (canvas.dataset.colorStops || "#202423,#d81919,#eff3ec").split(",").flatMap(hexToRgb)
-      }),
+      },
       getLocations: (gl, program) => ({
         time: gl.getUniformLocation(program, "uTime"),
         amplitude: gl.getUniformLocation(program, "uAmplitude"),
