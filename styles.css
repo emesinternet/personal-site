@@ -620,13 +620,46 @@ section:last-child {
   text-align: center;
 }
 
-.offer-meta .pricing-detail {
-  max-width: 22rem;
-  margin: 0.35rem auto 0;
-  color: var(--color-muted);
+.tooltip-term {
+  display: inline-grid;
+  justify-items: center;
+  color: var(--color-text);
+  cursor: help;
+  outline: 0;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width);
+  text-underline-offset: 0.1875rem;
+}
+
+.native-tooltip {
+  display: block;
+  overflow: hidden;
+  width: min(22rem, 70vw);
+  max-height: 0;
+  margin-top: 0;
+  padding: 0 0.75rem;
+  border: 0 solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-size: var(--font-size-link);
   line-height: 1.35;
-  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  text-decoration: none;
+  transform: translateY(-0.25rem);
+  transition: max-height .16s ease, margin-top .16s ease, padding .16s ease, border-width .16s ease, opacity .16s ease, transform .16s ease;
+}
+
+.tooltip-term:hover .native-tooltip,
+.tooltip-term:focus-visible .native-tooltip,
+.tooltip-term:focus-within .native-tooltip {
+  max-height: 8rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-width: var(--border-width);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .button-icon {
