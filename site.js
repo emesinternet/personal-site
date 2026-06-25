@@ -151,6 +151,70 @@ function initReveals() {
   });
 }
 
+function initTooltips() {
+  const triggers = [...document.querySelectorAll("[data-tooltip]")];
+
+  if (triggers.length === 0) {
+    return;
+  }
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "native-tooltip";
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.hidden = true;
+  document.body.append(tooltip);
+
+  let activeTrigger = null;
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  const positionTooltip = () => {
+    if (!activeTrigger) {
+      return;
+    }
+
+    const gap = 12;
+    const edge = 16;
+    const triggerRect = activeTrigger.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const left = clamp(
+      triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2),
+      edge,
+      window.innerWidth - tooltipRect.width - edge
+    );
+    const topBelow = triggerRect.bottom + gap;
+    const topAbove = triggerRect.top - tooltipRect.height - gap;
+    const top = topBelow + tooltipRect.height + edge <= window.innerHeight
+      ? topBelow
+      : Math.max(edge, topAbove);
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+  };
+
+  const showTooltip = (trigger) => {
+    activeTrigger = trigger;
+    tooltip.textContent = trigger.dataset.tooltip || "";
+    tooltip.hidden = false;
+    positionTooltip();
+  };
+
+  const hideTooltip = () => {
+    activeTrigger = null;
+    tooltip.hidden = true;
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("mouseenter", () => showTooltip(trigger));
+    trigger.addEventListener("focus", () => showTooltip(trigger));
+    trigger.addEventListener("mouseleave", hideTooltip);
+    trigger.addEventListener("blur", hideTooltip);
+  });
+
+  window.addEventListener("scroll", positionTooltip, { passive: true });
+  window.addEventListener("resize", positionTooltip);
+}
+
 function createShaderRenderer({
   canvas,
   sources,
@@ -427,5 +491,6 @@ function initAuroraShaders() {
 initExperienceYears();
 initHeroCollapse();
 initReveals();
+initTooltips();
 initHeroShader();
 initAuroraShaders();
