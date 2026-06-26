@@ -14,6 +14,7 @@ window.auroraShaderSources = {
     uniform vec3 uColorStops[3];
     uniform vec2 uResolution;
     uniform float uBlend;
+    uniform float uTimeOffset;
 
     out vec4 fragColor;
 
@@ -62,10 +63,11 @@ window.auroraShaderSources = {
     }
 
     void main() {
+      float time = uTime + uTimeOffset;
       vec2 uv = gl_FragCoord.xy / uResolution;
       vec3 rampColor = colorRamp(uv.x);
 
-      float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+      float height = snoise(vec2(uv.x * 2.0 + time * 0.1, time * 0.25)) * 0.5 * uAmplitude;
       height = exp(height);
       height = uv.y * 2.0 - height + 0.2;
 

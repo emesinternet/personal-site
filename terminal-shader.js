@@ -22,6 +22,8 @@ window.terminalShaderSources = {
     uniform float uScanlineIntensity;
     uniform float uBrightness;
     uniform float uCurvature;
+    uniform vec3 uOverlayColor;
+    uniform float uOverlayAmount;
 
     float time;
 
@@ -71,6 +73,11 @@ window.terminalShaderSources = {
       q = vec2(fbm(p + offset1), fbm(rot01 * p + offset1));
       r = vec2(fbm(rot1 * q + offset0), fbm(q + offset0));
       return fbm(p + r);
+    }
+
+    vec3 rainbow(vec2 uv) {
+      float t = uv.x * 0.5 + uTime * 0.02;
+      return 0.5 + 0.5 * cos(6.283185 * (t + vec3(0.0, 0.3333, 0.6666)));
     }
 
     float digit(vec2 p) {
@@ -139,9 +146,15 @@ window.terminalShaderSources = {
     void main() {
       time = uTime * 0.333333;
       vec2 uv = barrel(vUv);
-      vec2 p = uv * uScale;
+      vec2 aspect = vec2((uResolution.x / uResolution.y) / 2.0, 1.0);
+      vec2 p = ((uv - 0.5) * aspect + 0.5) * uScale;
       vec3 col = getColor(p);
       col *= vec3(0.86, 0.91, 0.84);
+      vec3 rainbowOverlay = mix(uOverlayColor, rainbow(vUv), 0.85);
+      col = mix(col, col * rainbowOverlay, uOverlayAmount);
+      float saturation = 0.35;
+      float luminance = dot(col, vec3(0.299, 0.587, 0.114));
+      col = mix(vec3(luminance), col, saturation);
       col *= uBrightness;
 
       float rnd = hash21(gl_FragCoord.xy);

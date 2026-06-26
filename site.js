@@ -5,8 +5,19 @@ const experienceStartYear = 2005;
 const experienceAnniversaryMonth = 0;
 const experienceAnniversaryDay = 8;
 const heroWidthScrollRange = 0.35;
+const heroTitleScrollRange = 0.45;
+const heroMaskEase = 2;
+const heroNoiseRange = {
+  start: 0.1,
+  end: 0.1
+};
+const heroCurvatureRange = {
+  start: 0,
+  end: 0.6
+};
 const sectionRevealMargin = "0% 0% -16% 0%";
 const childRevealMargin = "0% 0% -18% 0%";
+let heroShaderApi;
 
 function initExperienceYears() {
   const yearsExperience = document.querySelector("[data-years-experience]");
@@ -32,14 +43,20 @@ function initExperienceYears() {
 
 function initHeroCollapse() {
   const shell = document.querySelector(".shell");
+  const hero = document.querySelector(".hero");
+  const heroTitle = document.querySelector(".hero h1");
   const root = document.documentElement;
 
-  if (!shell) {
+  if (!shell || !hero || !heroTitle) {
     return;
   }
 
   let finalMaskInset = 0;
   let widthScrollRange = 1;
+  let titleScrollRange = 1;
+  let titleStartOffset = 0;
+  let titleEndOffset = 0;
+  let rootFontSize = 16;
   let frameRequest = 0;
 
   const lerp = (start, end, progress) => start + ((end - start) * progress);
@@ -47,20 +64,43 @@ function initHeroCollapse() {
 
   const measureHero = () => {
     const shellRect = shell.getBoundingClientRect();
+    rootFontSize = parseFloat(getComputedStyle(root).fontSize);
+    const titleRect = heroTitle.getBoundingClientRect();
+    const heroStyle = getComputedStyle(hero);
+    const heroPaddingBlock = parseFloat(heroStyle.paddingTop) + parseFloat(heroStyle.paddingBottom);
+    const heroContentHeight = Math.max(window.innerHeight - heroPaddingBlock, titleRect.height);
+
     finalMaskInset = Math.max((window.innerWidth - shellRect.width) / 2, 0);
     widthScrollRange = Math.max(window.innerHeight * heroWidthScrollRange, 1);
-    root.style.setProperty("--hero-stage-space", toRem(widthScrollRange, parseFloat(getComputedStyle(root).fontSize)));
+    titleScrollRange = Math.max(window.innerHeight * heroTitleScrollRange, 1);
+    titleStartOffset = -2.5 * rootFontSize;
+    titleEndOffset = Math.max((heroContentHeight / 2) - (titleRect.height / 2), titleStartOffset);
+    root.style.setProperty("--hero-stage-space", toRem(widthScrollRange + titleScrollRange, rootFontSize));
   };
 
   const updateHeroGeometry = () => {
     frameRequest = 0;
     const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
     const activeWidthRange = Math.min(widthScrollRange, maxScroll);
+    const activeTitleRange = Math.min(titleScrollRange, maxScroll);
     const widthProgress = Math.min(window.scrollY / activeWidthRange, 1);
-    const rootFontSize = parseFloat(getComputedStyle(root).fontSize);
+    const titleProgress = Math.min(Math.max((window.scrollY - activeWidthRange) / activeTitleRange, 0), 1);
+    const easedProgress = Math.max(Math.min(widthProgress, 1), 0) ** Math.max(heroMaskEase, 0.2);
+    const noiseProgress = Math.max(Math.min(widthProgress, 1), 0);
+
+    if (heroShaderApi?.setSetting) {
+      const noise = heroNoiseRange.start + (heroNoiseRange.end - heroNoiseRange.start) * noiseProgress;
+      heroShaderApi.setSetting("noise", noise);
+    }
+
+    if (heroShaderApi?.setSetting) {
+      const curvature = heroCurvatureRange.start + (heroCurvatureRange.end - heroCurvatureRange.start) * noiseProgress;
+      heroShaderApi.setSetting("curvature", curvature);
+    }
 
     root.style.setProperty("--hero-mask-inline", toRem(lerp(0, finalMaskInset, widthProgress), rootFontSize));
-    root.style.setProperty("--hero-grid-opacity", String(widthProgress));
+    root.style.setProperty("--hero-grid-opacity", String(easedProgress));
+    root.style.setProperty("--hero-title-offset", toRem(lerp(titleStartOffset, titleEndOffset, titleProgress), rootFontSize));
   };
 
   const requestHeroUpdate = () => {
@@ -79,6 +119,7 @@ function initHeroCollapse() {
   refreshHero();
   window.addEventListener("scroll", requestHeroUpdate, { passive: true });
   window.addEventListener("resize", refreshHero);
+
 }
 
 function initReveals() {
@@ -160,15 +201,19 @@ function initTooltips() {
 
   const tooltip = document.createElement("div");
   tooltip.className = "native-tooltip";
+  tooltip.id = "pricing-tooltip";
   tooltip.setAttribute("role", "tooltip");
   tooltip.hidden = true;
   document.body.append(tooltip);
 
   let activeTrigger = null;
+  let frameRequest = 0;
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
   const positionTooltip = () => {
+    frameRequest = 0;
+
     if (!activeTrigger) {
       return;
     }
@@ -194,14 +239,22 @@ function initTooltips() {
 
   const showTooltip = (trigger) => {
     activeTrigger = trigger;
+    trigger.setAttribute("aria-describedby", tooltip.id);
     tooltip.textContent = trigger.dataset.tooltip || "";
     tooltip.hidden = false;
     positionTooltip();
   };
 
   const hideTooltip = () => {
+    activeTrigger?.removeAttribute("aria-describedby");
     activeTrigger = null;
     tooltip.hidden = true;
+  };
+
+  const requestTooltipPosition = () => {
+    if (!frameRequest) {
+      frameRequest = requestAnimationFrame(positionTooltip);
+    }
   };
 
   triggers.forEach((trigger) => {
@@ -211,8 +264,8 @@ function initTooltips() {
     trigger.addEventListener("blur", hideTooltip);
   });
 
-  window.addEventListener("scroll", positionTooltip, { passive: true });
-  window.addEventListener("resize", positionTooltip);
+  window.addEventListener("scroll", requestTooltipPosition, { passive: true });
+  window.addEventListener("resize", requestTooltipPosition);
 }
 
 function createShaderRenderer({
@@ -262,7 +315,6 @@ function createShaderRenderer({
   try {
     program = createProgram();
   } catch (error) {
-    console.error(error);
     canvas.hidden = true;
     return null;
   }
@@ -367,12 +419,43 @@ function createShaderRenderer({
 
 function initHeroShader() {
   const canvas = document.querySelector("[data-terminal-shader]");
+  const parseColor = (value) => {
+    const hex = String(value || "").replace("#", "").trim();
+    if (hex.length !== 6) {
+      return [1, 1, 1];
+    }
+
+    const number = parseInt(hex, 16);
+
+    return [
+      ((number >> 16) & 255) / 255,
+      ((number >> 8) & 255) / 255,
+      (number & 255) / 255
+    ];
+  };
 
   if (!canvas) {
-    return;
+    return {
+      setSetting() {
+      }
+    };
   }
 
-  createShaderRenderer({
+  const settings = {
+    opacity: 0.2,
+    scale: 3,
+    digitSize: 1.4,
+    speed: 0.6,
+    noise: 0.1,
+    glitch: 0,
+    scanlines: 1,
+    brightness: 1.5,
+    curvature: 0,
+    overlayAmount: 1,
+    overlayColor: parseColor("#d81919")
+  };
+
+  const renderer = createShaderRenderer({
     canvas,
     sources: window.terminalShaderSources,
     label: "Terminal",
@@ -383,17 +466,7 @@ function initHeroShader() {
       depth: false,
       powerPreference: "low-power"
     },
-    settings: {
-      opacity: 0.19,
-      scale: 1.4,
-      digitSize: 1.75,
-      speed: 0.57,
-      noise: 0.82,
-      glitch: 0,
-      scanlines: 1,
-      brightness: 0.98,
-      curvature: 0
-    },
+    settings,
     getLocations: (gl, program) => ({
       time: gl.getUniformLocation(program, "uTime"),
       scale: gl.getUniformLocation(program, "uScale"),
@@ -402,7 +475,9 @@ function initHeroShader() {
       glitch: gl.getUniformLocation(program, "uGlitchAmount"),
       scanlines: gl.getUniformLocation(program, "uScanlineIntensity"),
       brightness: gl.getUniformLocation(program, "uBrightness"),
-      curvature: gl.getUniformLocation(program, "uCurvature")
+      curvature: gl.getUniformLocation(program, "uCurvature"),
+      overlayColor: gl.getUniformLocation(program, "uOverlayColor"),
+      overlayAmount: gl.getUniformLocation(program, "uOverlayAmount")
     }),
     draw: ({ gl, locations, settings, time }) => {
       canvas.style.setProperty("--shader-opacity", String(settings.opacity));
@@ -414,15 +489,48 @@ function initHeroShader() {
       gl.uniform1f(locations.scanlines, settings.scanlines);
       gl.uniform1f(locations.brightness, settings.brightness);
       gl.uniform1f(locations.curvature, settings.curvature);
+      gl.uniform3fv(locations.overlayColor, settings.overlayColor);
+      gl.uniform1f(locations.overlayAmount, settings.overlayAmount);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     }
   });
+
+  const setSetting = (setting, value) => {
+    if (!settings.hasOwnProperty(setting)) {
+      return;
+    }
+
+    if (setting === "overlayColor") {
+      settings[setting] = parseColor(value);
+    } else {
+      settings[setting] = Number(value);
+    }
+
+    if (setting === "opacity") {
+      canvas.style.setProperty("--shader-opacity", String(settings.opacity));
+    }
+
+    if (renderer) {
+      renderer.requestRender();
+    }
+  };
+
+  return {
+    setSetting
+  };
 }
 
 function initAuroraShaders() {
   const canvases = [...document.querySelectorAll("[data-aurora-shader]")];
 
   if (canvases.length === 0 || !window.auroraShaderSources) {
+    return;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 45rem)").matches) {
+    canvases.forEach((canvas) => {
+      canvas.hidden = true;
+    });
     return;
   }
 
@@ -437,7 +545,13 @@ function initAuroraShaders() {
     ];
   };
 
-  canvases.forEach((canvas) => {
+  const initCanvas = (canvas) => {
+    if (canvas.dataset.shaderReady === "true") {
+      return;
+    }
+
+    canvas.dataset.shaderReady = "true";
+
     const explicitHeight = canvas.dataset.height?.trim();
     const explicitWidth = canvas.dataset.width?.trim();
 
@@ -465,13 +579,15 @@ function initAuroraShaders() {
         amplitude: Number(canvas.dataset.amplitude || 0.74),
         blend: Number(canvas.dataset.blend || 0.82),
         speed: Number(canvas.dataset.speed || 0.46),
+        timeOffset: Number(canvas.dataset.timeOffset || 0),
         colorStops: (canvas.dataset.colorStops || "#202423,#d81919,#eff3ec").split(",").flatMap(hexToRgb)
       },
       getLocations: (gl, program) => ({
         time: gl.getUniformLocation(program, "uTime"),
         amplitude: gl.getUniformLocation(program, "uAmplitude"),
         colorStops: gl.getUniformLocation(program, "uColorStops"),
-        blend: gl.getUniformLocation(program, "uBlend")
+        blend: gl.getUniformLocation(program, "uBlend"),
+        timeOffset: gl.getUniformLocation(program, "uTimeOffset")
       }),
       draw: ({ gl, locations, settings, time }) => {
         gl.clearColor(0, 0, 0, 0);
@@ -480,17 +596,68 @@ function initAuroraShaders() {
         gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
         gl.uniform1f(locations.time, time * settings.speed);
         gl.uniform1f(locations.amplitude, settings.amplitude);
+        gl.uniform1f(locations.timeOffset, settings.timeOffset);
         gl.uniform3fv(locations.colorStops, settings.colorStops);
         gl.uniform1f(locations.blend, settings.blend);
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       }
     });
-  });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    canvases.forEach(initCanvas);
+    return;
+  }
+
+  const shaderObserver = new IntersectionObserver((entries, observer) => {
+    entries
+      .filter((entry) => entry.isIntersecting)
+      .forEach((entry) => {
+        initCanvas(entry.target);
+        observer.unobserve(entry.target);
+      });
+  }, { rootMargin: "20% 0% 20% 0%", threshold: 0 });
+
+  canvases.forEach((canvas) => shaderObserver.observe(canvas));
+}
+
+function initProjectImages() {
+  const cards = [...document.querySelectorAll("[data-project-bg]")];
+
+  if (cards.length === 0) {
+    return;
+  }
+
+  const loadProjectImage = (card) => {
+    if (card.classList.contains("has-project-bg")) {
+      return;
+    }
+
+    card.style.setProperty("--project-bg", `url("${card.dataset.projectBg}")`);
+    card.classList.add("has-project-bg");
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    cards.forEach(loadProjectImage);
+    return;
+  }
+
+  const projectObserver = new IntersectionObserver((entries, observer) => {
+    entries
+      .filter((entry) => entry.isIntersecting)
+      .forEach((entry) => {
+        loadProjectImage(entry.target);
+        observer.unobserve(entry.target);
+      });
+  }, { rootMargin: "35% 0% 35% 0%", threshold: 0 });
+
+  cards.forEach((card) => projectObserver.observe(card));
 }
 
 initExperienceYears();
 initHeroCollapse();
 initReveals();
 initTooltips();
-initHeroShader();
+heroShaderApi = initHeroShader();
 initAuroraShaders();
+initProjectImages();

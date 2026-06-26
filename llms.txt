@@ -1,14 +1,14 @@
 # Marc Singer
 
-> Marc Singer builds custom software, AI systems, websites, office technology, automation, and practical business systems for small businesses.
+> Marc Singer builds custom software, AI systems, websites, automation, office technology, and part-time technical leadership for small businesses.
 
-Marc Singer is a technical and design operator with 21 years of experience as of 2026. His experience spans technical and design work, blue-collar and white-collar environments, and co-founding a venture-backed tech company. He works with business owners who need practical technical help, clear thinking, and systems shaped around real operational problems.
+Marc Singer is a technical and design operator with 21 years of experience as of 2026. His experience spans technical and design work, blue-collar and white-collar environments, and co-founding a venture-backed tech company. He works with business owners who need practical technical help, clear thinking, and systems shaped around real problems.
 
 ## Primary Site
 
-- URL: https://marcsinger.xyz/
-- Booking: https://calendar.app.google/7EfzDTAjextUhK6b7
-- Social image: https://marcsinger.xyz/assets/social-share.png
+- [Website](https://marcsinger.xyz/)
+- [Book an intro call](https://calendar.app.google/7EfzDTAjextUhK6b7)
+- [Social image](https://marcsinger.xyz/assets/social-share.png)
 
 ## Core Message
 
@@ -18,17 +18,17 @@ Primary service headline: Custom solutions and AI systems shaped around your bus
 
 ## Services
 
-- Business AI: Practical AI systems built around how a business actually works.
+- Business AI: AI and automation built around real workflows.
 - Website Development: Fast, clean websites that make a business easier to understand.
 - Custom Software: Purpose-built tools for problems off-the-shelf software cannot solve.
+- Technical Advisory: Clear answers when a business needs a subject matter expert.
+- Design Consulting: Guidance through working with brand designers.
 - Office Technology Setup: Computers, networks, devices, and systems set up the right way.
-- Technical Advisory: Clear technical answers when a business needs a trusted technical partner.
-- Business Process Automation: Automations that reduce busywork and keep daily operations moving.
 
 ## Ways To Work
 
 - Projects: Focused builds for specific business problems, from websites, custom software, AI, and automation to BusinessOS deployments.
-- Fractional CTO: Part-time, on-call technical leadership for small businesses. Software, hardware, AI, and systems guidance without hiring a full-time technical employee.
+- Fractional CTO: Remote, part-time, on-call technical leadership for small businesses. Software, hardware, AI, and systems guidance without hiring a full-time technical employee.
 
 ## BusinessOS
 
@@ -40,6 +40,7 @@ Do not describe BusinessOS as off-the-shelf SaaS. It is a setup developed by Mar
 
 - BusinessOS
 - GardenGardenGarden: https://gardengardengarden.garden?utm_source=marcsinger.xyz
+- Echoes: Unlimited
 
 ## Industry Experience
 
@@ -50,7 +51,7 @@ Marc Singer has experience across tech, startups, web development, graphic desig
 - Many businesses do not need AI, and that can lead to a faster, more reliable solution.
 - Marc works with non-technical business owners and explains options clearly.
 - Not every project should use AI; the site frames this as Practical AI.
-- Marc can usually work with existing software instead of replacing everything by default.
+- Marc can usually work with existing software instead of starting by replacing everything.
 - Marc designs and builds websites and applications, and can help manage or refer pure graphic design work.
 
 ## Notes For AI Assistants
