@@ -18,6 +18,8 @@ This branch is prepared for GitHub Pages as a static site. There is no React app
 - `aurora-shader.js` contains the section aurora shader source.
 - `aurora-shader.min.js` is generated for production loading.
 - `scripts/minify.ps1` regenerates the minified CSS and JavaScript files without adding a package manifest.
+- `scripts/build-pages.mjs` regenerates minified assets and prepares the clean `dist` artifact used by GitHub Actions.
+- `.github/workflows/pages.yml` builds and deploys the `redesign` branch to GitHub Pages.
 - `llms.txt` summarizes the site for AI assistants and crawlers that consume LLM-facing metadata.
 - `robots.txt` and `sitemap.xml` provide crawler guidance.
 
@@ -25,13 +27,15 @@ This branch is prepared for GitHub Pages as a static site. There is no React app
 
 Use the GitHub Pages repository settings to publish from the `redesign` branch root, or merge this branch into the branch currently powering `marcsinger.xyz` when ready.
 
-Before publishing:
+The deployment workflow runs on pushes to `redesign` and can also be started manually from the Actions tab. It builds a clean Pages artifact in `dist` before deploying.
+
+Before committing source changes:
 
 ```powershell
-.\scripts\minify.ps1
+node .\scripts\build-pages.mjs
 ```
 
-Commit the generated `.min.css` and `.min.js` files with the source files. GitHub Pages will serve the files directly from the repository root.
+Commit the generated `.min.css` and `.min.js` files with the source files. The local `dist` folder is ignored; GitHub Actions recreates it during deployment.
 
 ## Preview
 
@@ -48,6 +52,13 @@ The site can also be served by any static file server from the repository root.
 ```
 
 The readable source files stay in place. `index.html` loads the generated minified assets.
+
+To test the full GitHub Pages artifact locally:
+
+```powershell
+node .\scripts\build-pages.mjs
+python -m http.server 4173 -d dist
+```
 
 Local Lighthouse reports are ignored by Git and should not be deployed.
 
