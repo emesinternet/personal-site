@@ -46,7 +46,7 @@ The site is minimal, dark, grid-driven, and slightly technical without becoming 
 
 ### Work With Me
 
-- Two primary options: Projects and Fractional CTO.
+- Two primary options: Projects & Advisory and Retained Technical Partner.
 - Cells should feel like pricing cards without heavy visual chrome.
 - Pricing details stay secondary.
 
