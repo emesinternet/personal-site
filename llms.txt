@@ -19,7 +19,7 @@ Primary service headline: Custom solutions and AI systems shaped around your bus
 ## Services
 
 - Business AI: AI and automation built around real workflows.
-- Website Development: Fast, clean websites that make a business easier to understand.
+- Web Development: Fast, clean websites and web apps built for real business needs.
 - Custom Software: Purpose-built tools for problems off-the-shelf software cannot solve.
 - Technical Advisory: Clear answers when a business needs a subject matter expert.
 - Design Consulting: Guidance through working with brand designers.
