@@ -654,6 +654,45 @@ function initProjectImages() {
   cards.forEach((card) => projectObserver.observe(card));
 }
 
+function initIndustryImages() {
+  const items = [...document.querySelectorAll("[data-industry-bg]")];
+
+  if (items.length === 0) {
+    return;
+  }
+
+  const loadIndustryImage = (item) => {
+    if (item.classList.contains("has-industry-bg")) {
+      return;
+    }
+
+    item.style.setProperty("--industry-bg", `url("${item.dataset.industryBg}")`);
+    item.classList.add("has-industry-bg");
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(loadIndustryImage);
+    return;
+  }
+
+  const industryObserver = new IntersectionObserver((entries, observer) => {
+    entries
+      .filter((entry) => entry.isIntersecting)
+      .forEach((entry) => {
+        entry.target.querySelectorAll("[data-industry-bg]").forEach(loadIndustryImage);
+        observer.unobserve(entry.target);
+      });
+  }, { rootMargin: "20% 0% 20% 0%", threshold: 0 });
+
+  const industryStrip = document.querySelector(".industry-strip__list");
+
+  if (industryStrip) {
+    industryObserver.observe(industryStrip);
+  } else {
+    items.forEach(loadIndustryImage);
+  }
+}
+
 initExperienceYears();
 initHeroCollapse();
 initReveals();
@@ -661,3 +700,4 @@ initTooltips();
 heroShaderApi = initHeroShader();
 initAuroraShaders();
 initProjectImages();
+initIndustryImages();

@@ -59,6 +59,7 @@ The site is minimal, dark, grid-driven, and slightly technical without becoming 
 
 - Full-width project cards stacked vertically.
 - Background images are supportive and should fade away from the text side.
+- Cards may exist without background imagery when a project image is not available yet.
 - Buttons sit at the bottom of cards when present.
 
 ## CSS Tokens
