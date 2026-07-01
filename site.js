@@ -268,6 +268,45 @@ function initTooltips() {
   window.addEventListener("resize", requestTooltipPosition);
 }
 
+function initBackToTop() {
+  const button = document.querySelector(".back-to-top");
+  const triggerSection = document.querySelector("#services");
+
+  if (!button || !triggerSection) {
+    return;
+  }
+
+  let triggerScrollY = 0;
+  let frameRequest = 0;
+
+  const measureTrigger = () => {
+    const rect = triggerSection.getBoundingClientRect();
+    triggerScrollY = window.scrollY + rect.top + rect.height;
+  };
+
+  const updateButton = () => {
+    frameRequest = 0;
+    button.classList.toggle("is-visible", window.scrollY >= triggerScrollY);
+  };
+
+  const requestUpdate = () => {
+    if (frameRequest) {
+      return;
+    }
+
+    frameRequest = window.requestAnimationFrame(updateButton);
+  };
+
+  const refresh = () => {
+    measureTrigger();
+    requestUpdate();
+  };
+
+  refresh();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", refresh);
+}
+
 function createShaderRenderer({
   canvas,
   sources,
@@ -697,6 +736,7 @@ initExperienceYears();
 initHeroCollapse();
 initReveals();
 initTooltips();
+initBackToTop();
 heroShaderApi = initHeroShader();
 initAuroraShaders();
 initProjectImages();
