@@ -7,14 +7,7 @@ const experienceAnniversaryDay = 8;
 const heroWidthScrollRange = 0.35;
 const heroTitleScrollRange = 0.45;
 const heroMaskEase = 2;
-const heroNoiseRange = {
-  start: 0.1,
-  end: 0.1
-};
-const heroCurvatureRange = {
-  start: 0,
-  end: 0.6
-};
+const enableFoldGradientControls = false;
 const sectionRevealMargin = "0% 0% -16% 0%";
 const childRevealMargin = "0% 0% -18% 0%";
 let heroShaderApi;
@@ -86,18 +79,6 @@ function initHeroCollapse() {
     const widthProgress = Math.min(window.scrollY / activeWidthRange, 1);
     const titleProgress = Math.min(Math.max((window.scrollY - activeWidthRange) / activeTitleRange, 0), 1);
     const easedProgress = Math.max(Math.min(widthProgress, 1), 0) ** Math.max(heroMaskEase, 0.2);
-    const noiseProgress = Math.max(Math.min(widthProgress, 1), 0);
-
-    if (heroShaderApi?.setSetting) {
-      const noise = heroNoiseRange.start + (heroNoiseRange.end - heroNoiseRange.start) * noiseProgress;
-      heroShaderApi.setSetting("noise", noise);
-    }
-
-    if (heroShaderApi?.setSetting) {
-      const curvature = heroCurvatureRange.start + (heroCurvatureRange.end - heroCurvatureRange.start) * noiseProgress;
-      heroShaderApi.setSetting("curvature", curvature);
-    }
-
     root.style.setProperty("--hero-mask-inline", toRem(lerp(0, finalMaskInset, widthProgress), rootFontSize));
     root.style.setProperty("--hero-grid-opacity", String(easedProgress));
     root.style.setProperty("--hero-title-offset", toRem(lerp(titleStartOffset, titleEndOffset, titleProgress), rootFontSize));
@@ -307,6 +288,92 @@ function initBackToTop() {
   window.addEventListener("resize", refresh);
 }
 
+function initFoldGradientControls(api) {
+  if (!enableFoldGradientControls || !api?.setSetting || !api?.getSettings) {
+    return;
+  }
+
+  const settings = api.getSettings();
+  const panel = document.createElement("form");
+  panel.className = "shader-controls";
+  panel.innerHTML = `
+    <div class="shader-controls__header">
+      <p>FoldGradient</p>
+      <button type="button" data-copy-values>Copy values</button>
+    </div>
+    <div class="shader-controls__colors" data-color-controls></div>
+    <label>Background <input type="color" name="backgroundColor" value="${settings.backgroundColorHex}"></label>
+    <label>Shadow <input type="color" name="shadowColor" value="${settings.shadowColorHex}"></label>
+    <label>Opacity <input type="range" name="opacity" min="0" max="1" step="0.01" value="${settings.opacity}"><span>${settings.opacity}</span></label>
+    <label>Softness <input type="range" name="softness" min="0" max="2" step="0.01" value="${settings.softness}"><span>${settings.softness}</span></label>
+    <label>Saturation <input type="range" name="saturation" min="0" max="2" step="0.01" value="${settings.saturation}"><span>${settings.saturation}</span></label>
+    <label>Rotation <input type="range" name="rotation" min="0" max="360" step="1" value="${settings.rotation}"><span>${settings.rotation}</span></label>
+    <label>Zoom <input type="range" name="folds" min="4" max="18" step="0.1" value="${settings.folds}"><span>${settings.folds}</span></label>
+    <label>Ribbon <input type="range" name="ribbon" min="0" max="1" step="0.01" value="${settings.ribbon}"><span>${settings.ribbon}</span></label>
+    <label>Ribbon width <input type="range" name="ribbonWidth" min="0.05" max="3" step="0.01" value="${settings.ribbonWidth}"><span>${settings.ribbonWidth}</span></label>
+    <label>Speed <input type="range" name="speed" min="0" max="2" step="0.01" value="${settings.speed}"><span>${settings.speed}</span></label>
+    <label>Noise <input type="range" name="noise" min="0" max="1" step="0.01" value="${settings.noise}"><span>${settings.noise}</span></label>
+  `;
+
+  const colorControls = panel.querySelector("[data-color-controls]");
+
+  settings.colorHexes.forEach((color, index) => {
+    const label = document.createElement("label");
+    label.textContent = `Color ${index + 1}`;
+    const input = document.createElement("input");
+    input.type = "color";
+    input.name = `color-${index}`;
+    input.value = color;
+    label.append(input);
+    colorControls.append(label);
+  });
+
+  const copyValues = () => {
+    const values = api.getSettings();
+    const output = {
+      colors: values.colorHexes,
+      bgColor: values.backgroundColorHex,
+      shadowColor: values.shadowColorHex,
+      opacity: values.opacity,
+      softness: values.softness,
+      saturation: values.saturation,
+      rotation: values.rotation,
+      zoom: values.folds,
+      ribbon: values.ribbon,
+      ribbonWidth: values.ribbonWidth,
+      speed: values.speed,
+      noise: values.noise
+    };
+
+    navigator.clipboard?.writeText(JSON.stringify(output, null, 2));
+  };
+
+  panel.addEventListener("input", (event) => {
+    const input = event.target;
+
+    if (!(input instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const valueLabel = input.closest("label")?.querySelector("span");
+
+    if (input.name.startsWith("color-")) {
+      const nextColors = api.getSettings().colorHexes;
+      nextColors[Number(input.name.replace("color-", ""))] = input.value;
+      api.setSetting("colors", nextColors);
+    } else {
+      api.setSetting(input.name, input.value);
+    }
+
+    if (valueLabel) {
+      valueLabel.textContent = input.value;
+    }
+  });
+
+  panel.querySelector("[data-copy-values]")?.addEventListener("click", copyValues);
+  document.body.append(panel);
+}
+
 function createShaderRenderer({
   canvas,
   sources,
@@ -375,7 +442,7 @@ function createShaderRenderer({
 
   const locations = {
     position: gl.getAttribLocation(program, "aPosition"),
-    resolution: gl.getUniformLocation(program, "uResolution"),
+    resolution: gl.getUniformLocation(program, "uResolution") || gl.getUniformLocation(program, "u_resolution"),
     ...getLocations(gl, program)
   };
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -458,6 +525,7 @@ function createShaderRenderer({
 
 function initHeroShader() {
   const canvas = document.querySelector("[data-terminal-shader]");
+  const toLinear = (value) => value ** 2.2;
   const parseColor = (value) => {
     const hex = String(value || "").replace("#", "").trim();
     if (hex.length !== 6) {
@@ -467,11 +535,12 @@ function initHeroShader() {
     const number = parseInt(hex, 16);
 
     return [
-      ((number >> 16) & 255) / 255,
-      ((number >> 8) & 255) / 255,
-      (number & 255) / 255
+      toLinear(((number >> 16) & 255) / 255),
+      toLinear(((number >> 8) & 255) / 255),
+      toLinear((number & 255) / 255)
     ];
   };
+  const parseColorStop = (value) => [...parseColor(value), 1];
 
   if (!canvas) {
     return {
@@ -481,55 +550,64 @@ function initHeroShader() {
   }
 
   const settings = {
-    opacity: 0.2,
-    scale: 3,
-    digitSize: 1.4,
-    speed: 0.6,
-    noise: 0.1,
-    glitch: 0,
-    scanlines: 1,
-    brightness: 1.5,
-    curvature: 0,
-    overlayAmount: 1,
-    overlayColor: parseColor("#d81919")
+    opacity: 0.6,
+    speed: 1.25,
+    colorHexes: ["#ffffff", "#d05d5d", "#333333", "#5d9ed0", "#ffffff"],
+    colors: ["#ffffff", "#d05d5d", "#333333", "#5d9ed0", "#ffffff"].flatMap(parseColorStop),
+    colorCount: 5,
+    backgroundColorHex: "#121212",
+    backgroundColor: parseColor("#121212"),
+    shadowColorHex: "#0a1c2a",
+    shadowColor: parseColor("#0a1c2a"),
+    softness: 0.81,
+    saturation: 0.98,
+    noise: 0.76,
+    rotation: 0,
+    folds: 7.3,
+    ribbon: 0.08,
+    ribbonWidth: 1.32
   };
 
   const renderer = createShaderRenderer({
     canvas,
     sources: window.terminalShaderSources,
-    label: "Terminal",
-    contextType: "webgl",
+    label: "FoldGradient",
+    contextType: "webgl2",
     contextOptions: {
       alpha: true,
-      antialias: false,
+      antialias: true,
       depth: false,
       powerPreference: "low-power"
     },
     settings,
     getLocations: (gl, program) => ({
-      time: gl.getUniformLocation(program, "uTime"),
-      scale: gl.getUniformLocation(program, "uScale"),
-      digitSize: gl.getUniformLocation(program, "uDigitSize"),
-      noise: gl.getUniformLocation(program, "uNoiseAmp"),
-      glitch: gl.getUniformLocation(program, "uGlitchAmount"),
-      scanlines: gl.getUniformLocation(program, "uScanlineIntensity"),
-      brightness: gl.getUniformLocation(program, "uBrightness"),
-      curvature: gl.getUniformLocation(program, "uCurvature"),
-      overlayColor: gl.getUniformLocation(program, "uOverlayColor"),
-      overlayAmount: gl.getUniformLocation(program, "uOverlayAmount")
+      time: gl.getUniformLocation(program, "u_time"),
+      colors: gl.getUniformLocation(program, "u_colors"),
+      colorCount: gl.getUniformLocation(program, "u_ncols"),
+      backgroundColor: gl.getUniformLocation(program, "u_back"),
+      shadowColor: gl.getUniformLocation(program, "u_shadow"),
+      softness: gl.getUniformLocation(program, "u_softness"),
+      saturation: gl.getUniformLocation(program, "u_saturation"),
+      noise: gl.getUniformLocation(program, "u_noise"),
+      rotation: gl.getUniformLocation(program, "u_rotation"),
+      folds: gl.getUniformLocation(program, "u_folds"),
+      ribbon: gl.getUniformLocation(program, "u_ribbon"),
+      ribbonWidth: gl.getUniformLocation(program, "u_ribbonWidth")
     }),
     draw: ({ gl, locations, settings, time }) => {
       canvas.style.setProperty("--shader-opacity", String(settings.opacity));
       gl.uniform1f(locations.time, time * settings.speed);
-      gl.uniform1f(locations.scale, settings.scale);
-      gl.uniform1f(locations.digitSize, settings.digitSize);
+      gl.uniform4fv(locations.colors, settings.colors);
+      gl.uniform1f(locations.colorCount, settings.colorCount);
+      gl.uniform3fv(locations.backgroundColor, settings.backgroundColor);
+      gl.uniform3fv(locations.shadowColor, settings.shadowColor);
+      gl.uniform1f(locations.softness, settings.softness);
+      gl.uniform1f(locations.saturation, settings.saturation);
       gl.uniform1f(locations.noise, settings.noise);
-      gl.uniform1f(locations.glitch, settings.glitch);
-      gl.uniform1f(locations.scanlines, settings.scanlines);
-      gl.uniform1f(locations.brightness, settings.brightness);
-      gl.uniform1f(locations.curvature, settings.curvature);
-      gl.uniform3fv(locations.overlayColor, settings.overlayColor);
-      gl.uniform1f(locations.overlayAmount, settings.overlayAmount);
+      gl.uniform1f(locations.rotation, settings.rotation);
+      gl.uniform1f(locations.folds, settings.folds);
+      gl.uniform1f(locations.ribbon, settings.ribbon);
+      gl.uniform1f(locations.ribbonWidth, settings.ribbonWidth);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     }
   });
@@ -539,7 +617,11 @@ function initHeroShader() {
       return;
     }
 
-    if (setting === "overlayColor") {
+    if (setting === "colors") {
+      settings.colorHexes = [...value];
+      settings.colors = value.flatMap(parseColorStop);
+    } else if (setting === "backgroundColor" || setting === "shadowColor") {
+      settings[`${setting}Hex`] = value;
       settings[setting] = parseColor(value);
     } else {
       settings[setting] = Number(value);
@@ -555,7 +637,11 @@ function initHeroShader() {
   };
 
   return {
-    setSetting
+    setSetting,
+    getSettings: () => ({
+      ...settings,
+      colorHexes: [...settings.colorHexes]
+    })
   };
 }
 
@@ -738,6 +824,7 @@ initReveals();
 initTooltips();
 initBackToTop();
 heroShaderApi = initHeroShader();
+initFoldGradientControls(heroShaderApi);
 initAuroraShaders();
 initProjectImages();
 initIndustryImages();

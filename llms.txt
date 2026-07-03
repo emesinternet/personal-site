@@ -42,6 +42,7 @@ Do not describe BusinessOS as off-the-shelf SaaS. It is a setup developed by Mar
 - GardenGardenGarden: A live Micro-SaaS for finding seeds, plants, trees, mushrooms, and gardening supplies from trusted providers in the US and Canada. Users can save favorites, build a seed vault, and get alerts for price drops and restocks.
 - Echoes: Unlimited: A conceptual open-world MMORPG built around an original universe, an infinitely replayable endgame loop, and a cross-franchise seasonal dungeon-building system.
 - GeoLoco: An OSINT tool that analyzes public social media profile signals to infer likely country or city level location. It was built to support large-scale content creator regional location data gathering for segmenting analytics and insights.
+- Preference Agent Skill: A coding agent skill for capturing, applying, and updating personal preferences so agents can follow common patterns that emerge across projects without the user having to restate them.
 
 ## Industry Experience
 

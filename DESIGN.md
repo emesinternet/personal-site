@@ -31,6 +31,7 @@ The site is minimal, dark, grid-driven, and slightly technical without becoming 
 - Text remains aligned to the main site container.
 - Only the background mask changes during the initial scroll.
 - The headline should stay short, cheeky, and human.
+- The FoldGradient tuning panel code remains in `site.js`, but is hidden by default with `enableFoldGradientControls = false`. Temporarily set it to `true` when tuning shader values locally.
 
 ### About / Industry
 
