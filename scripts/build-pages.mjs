@@ -15,7 +15,6 @@ const run = (command) => {
 
 const minify = () => {
   run("npx --yes clean-css-cli -o styles.min.css styles.css");
-  run("npx --yes terser terminal-shader.js -c -m -o terminal-shader.min.js");
   run("npx --yes terser aurora-shader.js -c -m -o aurora-shader.min.js");
   run("npx --yes terser site.js -c -m -o site.min.js");
 };
@@ -34,7 +33,6 @@ const copy = () => {
     "robots.txt",
     "sitemap.xml",
     "styles.min.css",
-    "terminal-shader.min.js",
     "aurora-shader.min.js",
     "site.min.js"
   ].forEach((file) => {
@@ -48,7 +46,6 @@ const validate = () => {
   const required = [
     "index.html",
     "styles.min.css",
-    "terminal-shader.min.js",
     "aurora-shader.min.js",
     "site.min.js",
     "CNAME",

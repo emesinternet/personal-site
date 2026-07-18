@@ -15,10 +15,6 @@ $tasks = @(
     Command = @("npx", "--yes", "clean-css-cli", "-o", "styles.min.css", "styles.css")
   },
   @{
-    Output = "terminal-shader.min.js"
-    Command = @("npx", "--yes", "terser", "terminal-shader.js", "-c", "-m", "-o", "terminal-shader.min.js")
-  },
-  @{
     Output = "aurora-shader.min.js"
     Command = @("npx", "--yes", "terser", "aurora-shader.js", "-c", "-m", "-o", "aurora-shader.min.js")
   },

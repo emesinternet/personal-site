@@ -37,7 +37,6 @@ Validate JavaScript:
 
 ```sh
 node --check site.js
-node --check terminal-shader.js
 node --check aurora-shader.js
 node --check site.min.js
 ```
@@ -53,6 +52,6 @@ The workflow builds `dist/` using `scripts/build-pages.mjs`, uploads it as a Pag
 - `index.html` owns content, metadata, structured data, and section structure.
 - `styles.css` owns the design system and layout.
 - `site.js` owns interactions, reveal timing, dynamic years of experience, tooltips, lazy project images, and shader setup.
-- `terminal-shader.js` and `aurora-shader.js` contain shader source.
+- `aurora-shader.js` contains the section shader source.
 - `.min.*` files are generated production assets and should match their source files.
 - `llms.txt`, `robots.txt`, and `sitemap.xml` are public crawler/metadata files.

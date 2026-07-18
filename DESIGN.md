@@ -8,9 +8,9 @@ The site is minimal, dark, grid-driven, and slightly technical without becoming 
 
 - **Canvas:** near-black page background with subtle SVG noise.
 - **Grid:** one-pixel borders define sections and cells. Lines should feel structural, not decorative.
-- **Type:** Geist for body text. Geist Pixel only for the hero headline and brand-like moments.
+- **Type:** Geist for body text. Geist Pixel only for the opening headline and brand-like moments.
 - **Color:** off-white text, muted gray body copy, dark green-black surfaces, restrained accent color. Section shaders may add atmosphere, but each section should stay within a narrow related color family.
-- **Motion:** subtle reveal/stagger, scroll-tied hero background mask, gentle shader movement. Motion should never make content harder to read.
+- **Motion:** subtle reveal/stagger and gentle section shader movement. Motion should never make content harder to read.
 - **Buttons:** simple filled light buttons on dark surfaces. No elaborate hover effects; use small opacity shifts.
 
 ## Layout Patterns
@@ -25,16 +25,9 @@ The site is minimal, dark, grid-driven, and slightly technical without becoming 
 
 ## Section Patterns
 
-### Hero
-
-- Full viewport intro with a masked shader background.
-- Text remains aligned to the main site container.
-- Only the background mask changes during the initial scroll.
-- The headline should stay short, cheeky, and human.
-- The FoldGradient tuning panel code remains in `site.js`, but is hidden by default with `enableFoldGradientControls = false`. Temporarily set it to `true` when tuning shader values locally.
-
 ### About / Industry
 
+- The short, cheeky opening headline sits directly above the About copy.
 - About copy is concise and business-facing.
 - Industry experience is a compact grid attached to the about section.
 - Industry hover backgrounds are low-opacity WebP textures, not icons.

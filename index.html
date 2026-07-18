@@ -22,17 +22,16 @@
   <meta property="og:title" content="Marc Singer | Custom Software, AI, and Business Systems">
   <meta property="og:description" content="Custom software, AI systems, websites, automation, and technical leadership shaped around your business.">
   <meta property="og:image" content="https://marcsinger.xyz/assets/social-share.png">
-  <meta property="og:image:alt" content="Marc Singer hero headline over a minimal terminal-style shader background.">
+  <meta property="og:image:alt" content="Marc Singer custom software, AI, and business systems.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Marc Singer | Custom Software, AI, and Business Systems">
   <meta name="twitter:description" content="Custom software, AI systems, websites, automation, and technical leadership shaped around your business.">
   <meta name="twitter:image" content="https://marcsinger.xyz/assets/social-share.png">
   <style>
-    :root{color-scheme:dark;--color-bg:#080908;--color-text:#eff3ec;--color-line:#252a25;--layout-max:72rem;--layout-gutter:2rem;--space-cell-inline:clamp(1.25rem,4vw,3rem);--space-hero:clamp(5rem,11vw,7.5rem);--font-display:"Geist Pixel","Geist",Arial,Helvetica,sans-serif;--font-size-display:clamp(2.5rem,7.3vw,5rem);--line-display:1.04;--border-width:.0625rem;--border-subtle:var(--border-width) solid var(--color-line);--hero-min-height:100svh;--hero-mask-inline:0rem;--hero-grid-opacity:0;--hero-title-offset:-2.5rem;--hero-stage-space:0rem;--hero-title-width:calc(min(var(--layout-max),calc(100vw - var(--layout-gutter))) - (var(--space-cell-inline) * 2))}*{box-sizing:border-box}html{overflow-x:clip}body{margin:0;overflow-x:clip;background:var(--color-bg);color:var(--color-text)}.shell{width:min(var(--layout-max),calc(100% - var(--layout-gutter)));margin:0 auto;position:relative;overflow:visible}.hero-stage{height:calc(100svh + var(--hero-stage-space));position:relative}.hero{position:sticky;top:0;overflow:visible;display:flex;align-items:center;min-height:var(--hero-min-height);margin-top:0;padding-block:var(--space-hero);padding-inline:var(--space-cell-inline);border-top:var(--border-subtle);border-right:0;border-left:0}.hero-background{position:absolute;inset:0;width:100vw;margin-right:calc(50% - 50vw);margin-left:calc(50% - 50vw);overflow:hidden;clip-path:inset(0 var(--hero-mask-inline) 0 var(--hero-mask-inline));pointer-events:none}.hero-shader{display:block;width:100%;height:100%;opacity:var(--shader-opacity,.28);pointer-events:none}h1{position:relative;z-index:2;width:var(--hero-title-width);margin:0;color:var(--color-text);font-family:var(--font-display);font-size:var(--font-size-display);font-weight:400;line-height:var(--line-display);text-align:left;text-wrap:balance;transform:translateY(var(--hero-title-offset))}
+    :root{color-scheme:dark;--color-bg:#080908;--color-text:#eff3ec;--layout-max:72rem;--layout-gutter:2rem;--font-display:"Geist Pixel","Geist",Arial,Helvetica,sans-serif;--font-size-display:clamp(2.25rem,6.4vw,4.5rem);--line-display:1.04}*{box-sizing:border-box}html{overflow-x:clip}body{margin:0;overflow-x:clip;background:var(--color-bg);color:var(--color-text)}.shell{width:min(var(--layout-max),calc(100% - var(--layout-gutter)));margin:0 auto;position:relative;overflow:visible}h1{margin:0;color:var(--color-text);font-family:var(--font-display);font-size:var(--font-size-display);font-weight:400;line-height:var(--line-display);text-align:left;text-wrap:balance}
   </style>
   <link rel="preload" href="./styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="./styles.min.css"></noscript>
-  <script src="./terminal-shader.min.js" defer></script>
   <script src="./aurora-shader.min.js" defer></script>
   <script src="./site.min.js" defer></script>
   <script type="application/ld+json">
@@ -56,7 +55,7 @@
         {
           "@type": "Offer",
           "name": "Projects & Advisory",
-          "description": "Focused builds and paid technical guidance for websites, custom software, AI, automation, and BusinessOS installations."
+          "description": "Focused builds and technical guidance for websites, custom software, AI, automation, and BusinessOS installations."
         },
         {
           "@type": "Offer",
@@ -71,36 +70,33 @@
   <a class="skip-link" href="#about">Skip to main content</a>
   <a class="back-to-top" href="#about" aria-label="Back to about section">↑</a>
   <main id="top" class="shell">
-    <div class="hero-stage">
-      <section class="hero" aria-label="Introduction">
-        <div class="hero-background" aria-hidden="true">
-          <canvas class="hero-shader" data-terminal-shader aria-hidden="true"></canvas>
-        </div>
-        <h1 data-text="Hi, I'm Marc, your new favorite computer guy.">Hi, I'm Marc, your new favorite computer guy.</h1>
-      </section>
-    </div>
-
-    <section id="about" class="section--layered section--attached-grid reveal about-section" data-reveal="scroll" data-children="section" aria-label="About Marc Singer and industry experience">
+    <section id="about" class="section--layered section--attached-grid about-section" aria-label="About Marc Singer and industry experience">
       <div class="section-background" aria-hidden="true">
         <canvas class="aurora-shader" data-aurora-shader data-color-stops="#1e3a8a,#c3cedd,#1d4ed8" data-time-offset="0" data-amplitude="0.92" data-blend="0.78" data-speed="0.34" aria-hidden="true"></canvas>
       </div>
-      <p class="section-title">About me</p>
-      <p class="section-copy">I have <span><span data-years-experience>21</span> years of experience</span> across technical and design work, including previously co-founding a venture-backed tech company. I've worked in both blue-collar and white-collar environments, where the challenges rarely look the same twice. I'm comfortable walking into unfamiliar situations, learning the ropes, and both designing and building practical systems that <span>solve real problems.</span></p>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work-with-me">Work</a>
+        <a href="#side-projects">Projects</a>
+      </nav>
+      <h1>Hi, I'm Marc, your new favorite computer guy.</h1>
+      <p class="section-copy">I have <span><span data-years-experience>21</span> years of experience</span> across technology and design, including co-founding a venture-backed tech company. I've worked in blue- and white-collar industries, where no two problems look quite the same. I'm comfortable stepping into unfamiliar environments, learning how they work, and designing and building practical systems that <span>solve real problems.</span></p>
       <div class="industry-strip">
         <div class="industry-strip__intro">
           <p>Industry experience</p>
           <span>I have unique experience in a range of industries. Ask me about it over an <a href="#work-with-me">intro call</a>.</span>
         </div>
         <div class="industry-strip__list edge-grid edge-grid--thirds">
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-tech-bg.webp">Tech</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-startups-bg.webp">Startups</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-web-development-bg.webp">Web Development</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-graphic-design-bg.webp">Graphic Design</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-game-design-bg.webp">Game Design</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-product-management-bg.webp">Product Management</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-multimedia-production-bg.webp">Multimedia Production</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-entertainment-bg.webp">Entertainment</span>
-          <span class="reveal-child" data-industry-bg="./assets/industry-backgrounds/industry-agriculture-bg.webp">Agriculture</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-tech-bg.webp">Tech</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-startups-bg.webp">Startups</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-web-development-bg.webp">Web Development</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-graphic-design-bg.webp">Graphic Design</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-game-design-bg.webp">Game Design</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-product-management-bg.webp">Product Management</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-multimedia-production-bg.webp">Multimedia Production</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-entertainment-bg.webp">Entertainment</span>
+          <span data-industry-bg="./assets/industry-backgrounds/industry-agriculture-bg.webp">Agriculture</span>
         </div>
       </div>
     </section>
@@ -129,7 +125,7 @@
         </article>
         <article class="reveal-child">
           <h2>Design Consulting</h2>
-          <p>I will connect you with and guide you through working with brand designers.</p>
+          <p>I connect you with the right brand designers and guide the work from brief to delivery.</p>
         </article>
         <article class="reveal-child">
           <h2>Office Technology Setup</h2>
@@ -142,12 +138,12 @@
       <div class="section-background" aria-hidden="true">
         <canvas class="aurora-shader" data-aurora-shader data-color-stops="#0f2f25,#44b47d,#4e8c6a" data-time-offset="2.4" data-amplitude="1.0" data-blend="0.8" data-speed="0.42" aria-hidden="true"></canvas>
       </div>
-      <p class="section-title">The future of your business starts today</p>
+      <p class="section-title">Two ways to work together</p>
       <div class="work-options edge-grid edge-grid--halves">
         <article class="work-card reveal-child">
           <div>
             <h2>Projects & Advisory</h2>
-            <p>Focused builds and paid technical guidance for specific business problems, from websites, custom software, AI, and automation to BusinessOS installations.</p>
+          <p>Focused builds and technical guidance for specific business problems, from websites, custom software, AI, and automation to BusinessOS installations.</p>
           </div>
           <div class="card-action">
             <a href="https://calendar.app.google/7EfzDTAjextUhK6b7" target="_blank" rel="noopener noreferrer">Free consultation<span class="sr-only">, opens in a new tab</span></a>
@@ -157,11 +153,11 @@
         <article class="work-card reveal-child">
           <div>
             <h2>Retained Technical Partner</h2>
-            <p>Remote, part-time technical strategy and hands-on systems work for small businesses without hiring a full-time technical employee. Limited retainer availability.</p>
+            <p>Ongoing technical strategy and hands-on systems work for small businesses that need senior technical help without the cost of a full-time hire. Limited availability.</p>
           </div>
           <div class="card-action">
             <a href="https://calendar.app.google/7EfzDTAjextUhK6b7" target="_blank" rel="noopener noreferrer">Book a call<span class="sr-only">, opens in a new tab</span></a>
-            <p class="pricing-note">Quarterly contracts paid monthly. Starting at <span class="tooltip-term" tabindex="0" data-tooltip="Expert experience at 1/4 the price of a full-time hire, without needing to provide company benefits. Project work may add additional cost.">$5,000/m.</span></p>
+            <p class="pricing-note">Quarterly contracts paid monthly. Starting at <span class="tooltip-term" tabindex="0" data-tooltip="Senior technical help at roughly one-fifth the cost of a full-time hire, without the benefits overhead. Project work may cost extra.">$4,000/month</span></p>
           </div>
         </article>
       </div>
@@ -179,11 +175,11 @@
         </article>
         <article class="faq-card reveal-child">
           <h2>Do you work with non-technical business owners?</h2>
-          <p><span class="answer-highlight">Yes,</span> and they are often the people with the most interesting problems. I explain options clearly and can help anyone understand complex technology by making it relatable.</p>
+          <p><span class="answer-highlight">Yes.</span> I explain the options in plain language, make complex technology easier to understand, and help you make informed decisions.</p>
         </article>
         <article class="faq-card reveal-child">
           <h2>Do you only build AI projects?</h2>
-          <p><span class="answer-highlight">No.</span> Some of the clearest, most reliable, and scalable solutions do not involve AI. I use the term “Practical AI” because the first instinct is often to use a sledgehammer on a nail-sized problem.</p>
+          <p><span class="answer-highlight">No.</span> Some of the clearest, most reliable, and scalable solutions do not involve AI. I use the term “Practical AI” because AI is often more machinery than the problem requires.</p>
         </article>
         <article class="faq-card reveal-child">
           <h2>What do you mean by Practical AI?</h2>
@@ -194,7 +190,7 @@
           <p><span class="answer-highlight">Usually, yes.</span> My job is not to start by replacing everything. It is to assess what you already have, explain the options, and find the best path to leave your business in a better position than it was before.</p>
         </article>
         <article class="faq-card reveal-child">
-          <h2>What about websites and design work?</h2>
+          <h2>Do you build websites and handle design work?</h2>
           <p><span class="answer-highlight">Yes.</span> I can design and build custom websites and applications, whether they need to be publicly available online or used internally by your team. Tell me what you are trying to achieve, and we can choose the right solution from there.</p>
           <p>For pure graphic design, I act as a project manager, connecting you with talented designers, and guiding you through the process.</p>
         </article>
@@ -206,19 +202,19 @@
         <canvas class="aurora-shader" data-aurora-shader data-color-stops="#3a1a28,#602b37,#9b4e60" data-time-offset="4.8" data-amplitude="1.0" data-blend="0.72" data-speed="0.36" aria-hidden="true"></canvas>
       </div>
       <p class="section-title">Side projects</p>
-      <p class="section-copy">I love turning personal needs into useful products with real-world value.</p>
+      <p class="section-copy">I love turning personal needs into useful products with practical value.</p>
       <div class="project-list">
         <article class="project-card project-card--businessos reveal-child" data-project-bg="./assets/businessos-reference.webp">
           <div>
             <h2>BusinessOS</h2>
             <p>An AI-enabled operating system I developed for businesses that need something on-premises, secure, and remotely accessible.</p>
-            <p>It helps organize documents, notes, tasks, automations, and business information in one place, so your team can get answers faster, reduce repetitive work, and keep things moving. Talk to it like you would any other employee. Best of all, your data never leaves your office.</p>
+            <p>It helps organize documents, notes, tasks, automations, and business information in one place, so your team can get answers faster, reduce repetitive work, and keep things moving. Talk to it like you would any other employee. Your data stays in your office.</p>
           </div>
         </article>
         <article class="project-card project-card--garden reveal-child" data-project-bg="./assets/gardengardengarden-catalog.webp">
           <div>
             <h2>GardenGardenGarden</h2>
-            <p>A Micro-SaaS for finding seeds, plants, trees, mushrooms, and gardening supplies from trusted providers in the US and Canada. Save favorites, build a seed vault, and get alerts for price drops and restocks.</p>
+            <p>A micro-SaaS for finding seeds, plants, trees, mushrooms, and gardening supplies from trusted providers in the US and Canada. Save favorites, build a seed vault, and get alerts for price drops and restocks.</p>
           </div>
           <div class="card-action">
             <a href="https://gardengardengarden.garden?utm_source=marcsinger.xyz" target="_blank" rel="noopener noreferrer">
@@ -238,7 +234,7 @@
           </div>
           <div class="card-action">
             <a href="#work-with-me">
-              <span>Contract me for Game Design</span>
+              <span>Hire me for game design</span>
               <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 17 17 7" />
                 <path d="M9 7h8v8" />
