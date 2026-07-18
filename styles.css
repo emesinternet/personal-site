@@ -113,8 +113,8 @@ body::before {
 }
 
 ::selection {
-  background: #d81919;
-  color: #fff;
+  background: #3f4b43;
+  color: var(--color-text);
 }
 
 a {
