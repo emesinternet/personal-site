@@ -597,6 +597,18 @@ section {
   opacity: .82;
 }
 
+.card-action--split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.card-action a.button--outline {
+  border-color: var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+}
+
 .card-action .pricing-note {
   margin: 0.75rem 0 0;
   color: var(--color-muted);
@@ -641,6 +653,13 @@ section {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 0.125rem;
+}
+
+.github-icon {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
 
 .project-list {
