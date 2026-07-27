@@ -693,6 +693,11 @@ section {
   mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .22) 24%, rgba(0, 0, 0, .9) 100%);
 }
 
+.project-card--burnerform::before {
+  left: 52%;
+  background-position: center;
+}
+
 .project-card--businessos::before {
   background-position: 45% 60%;
   filter: hue-rotate(220deg);
