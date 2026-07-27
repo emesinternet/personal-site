@@ -959,8 +959,21 @@ section {
   }
 
   .industry-strip__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     border-top: var(--border-subtle);
     border-left: 0;
+  }
+
+  .industry-strip__list span:nth-child(-n + 2) {
+    border-top: 0;
+  }
+
+  .industry-strip__list span:nth-child(even) {
+    border-left: var(--border-subtle);
+  }
+
+  .industry-strip__list span:last-child {
+    grid-column: 1 / -1;
   }
 
   .example-grid p {
