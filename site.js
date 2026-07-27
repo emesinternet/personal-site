@@ -115,6 +115,7 @@ function initTooltips() {
 
   let activeTrigger = null;
   let frameRequest = 0;
+  const mobileTooltipQuery = window.matchMedia("(max-width: 45rem)");
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -145,6 +146,10 @@ function initTooltips() {
   };
 
   const showTooltip = (trigger) => {
+    if (trigger.hasAttribute("data-tooltip-mobile") && !mobileTooltipQuery.matches) {
+      return;
+    }
+
     activeTrigger = trigger;
     trigger.setAttribute("aria-describedby", tooltip.id);
     tooltip.textContent = trigger.dataset.tooltip || "";
@@ -169,6 +174,12 @@ function initTooltips() {
     trigger.addEventListener("focus", () => showTooltip(trigger));
     trigger.addEventListener("mouseleave", hideTooltip);
     trigger.addEventListener("blur", hideTooltip);
+  });
+
+  mobileTooltipQuery.addEventListener("change", (event) => {
+    if (!event.matches && activeTrigger?.hasAttribute("data-tooltip-mobile")) {
+      hideTooltip();
+    }
   });
 
   window.addEventListener("scroll", requestTooltipPosition, { passive: true });
@@ -363,6 +374,40 @@ function createShaderRenderer({
   return { requestRender };
 }
 
+function initStickyNav() {
+  const nav = document.querySelector(".site-nav");
+  const heading = document.querySelector(".about-section h1");
+
+  if (!nav || !heading) {
+    return;
+  }
+
+  let triggerScrollY = 0;
+  let frameRequest = 0;
+
+  const updateNav = () => {
+    frameRequest = 0;
+    nav.classList.toggle("is-stuck", window.scrollY >= triggerScrollY);
+  };
+
+  const requestUpdate = () => {
+    if (!frameRequest) {
+      frameRequest = requestAnimationFrame(updateNav);
+    }
+  };
+
+  const measureTrigger = () => {
+    const headingRect = heading.getBoundingClientRect();
+    triggerScrollY = window.scrollY + headingRect.top - 40;
+    requestUpdate();
+  };
+
+  measureTrigger();
+  window.addEventListener("load", measureTrigger, { once: true });
+  window.addEventListener("resize", measureTrigger);
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+}
+
 function initAuroraShaders() {
   const canvases = [...document.querySelectorAll("[data-aurora-shader]")];
 
@@ -540,6 +585,7 @@ initExperienceYears();
 initReveals();
 initTooltips();
 initBackToTop();
+initStickyNav();
 initAuroraShaders();
 initProjectImages();
 initIndustryImages();
