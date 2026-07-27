@@ -575,7 +575,7 @@ section {
 .section-background::after {
   position: absolute;
   inset: 0;
-  background: rgba(8, 9, 8, .54);
+  background: rgba(8, 9, 8, .47);
   content: "";
 }
 
