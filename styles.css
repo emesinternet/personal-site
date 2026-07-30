@@ -888,6 +888,10 @@ section {
 }
 
 @media (max-width: 45rem) {
+  .site-nav {
+    column-gap: clamp(.5rem, 3vw, 1.25rem);
+  }
+
   .site-call {
     width: 2rem;
     padding: 0;
