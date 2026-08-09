@@ -309,6 +309,21 @@ section {
   opacity: 1;
 }
 
+.site-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.site-social__icon {
+  display: block;
+  width: .875rem;
+  height: .875rem;
+  fill: currentColor;
+}
+
 .site-call {
   display: inline-flex;
   align-items: center;
