@@ -820,13 +820,6 @@ section {
   background-position: center;
 }
 
-.project-card--businessos::before {
-  background-position: 45% 60%;
-  filter: hue-rotate(220deg);
-  left: 54%;
-  background-size: 200%;
-}
-
 .project-card--echoes::before {
   background-position: center right;
   left: 60%;
