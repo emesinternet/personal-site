@@ -46,7 +46,8 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": "Organization",
+      "@id": "https://marcsinger.xyz/#organization",
       "name": "Marc Singer",
       "url": "https://marcsinger.xyz/",
       "image": "https://marcsinger.xyz/assets/social-share.png",
@@ -58,18 +59,122 @@
         "url": "https://marcsinger.xyz/"
       },
       "areaServed": "US",
-      "makesOffer": [
-        {
-          "@type": "Offer",
-          "name": "Projects & Advisory",
-          "description": "Focused builds and technical guidance for websites, custom software, AI, automation, and BusinessOS installations."
-        },
-        {
-          "@type": "Offer",
-          "name": "Retained Technical Partner",
-          "description": "Ongoing technical strategy and hands-on systems work for small businesses."
-        }
-      ]
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services and ways to work together",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-business-ai",
+                  "name": "Business AI",
+                  "description": "AI and automation built around your real workflows.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-web-development",
+                  "name": "Web Development",
+                  "description": "Fast, clean websites and web apps for real business needs, with SEO and AEO built in.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-custom-software",
+                  "name": "Custom Software",
+                  "description": "Purpose-built tools for the problems off-the-shelf software cannot solve.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-technical-advisory",
+                  "name": "Technical Advisory",
+                  "description": "Clear answers when you need a subject matter expert.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-design-consulting",
+                  "name": "Design Consulting",
+                  "description": "I connect you with the right brand designers and guide the work from brief to delivery.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-office-technology-setup",
+                  "name": "Office Technology Setup",
+                  "description": "Computers, networks, devices, and systems set up the right way.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Ways to work together",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Projects & Advisory",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-projects-advisory",
+                  "name": "Projects & Advisory",
+                  "description": "Focused builds and technical guidance for specific business problems, from websites, custom software, AI, and automation to BusinessOS installations.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "Retained Technical Partner",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://marcsinger.xyz/#service-retained-technical-partner",
+                  "name": "Retained Technical Partner",
+                  "description": "Ongoing technical strategy and hands-on systems work for small businesses that need senior technical help without the cost of a full-time hire. Limited availability.",
+                  "provider": {
+                    "@id": "https://marcsinger.xyz/#organization"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     }
   </script>
 </head>
