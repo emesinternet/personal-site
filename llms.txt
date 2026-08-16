@@ -2,7 +2,7 @@
 
 > Marc Singer builds custom websites, software, AI systems, automation, and practical business solutions for small businesses that need better tools and support.
 
-Marc Singer is a business owner with 21 years of experience as of 2026. His experience spans technical and design work, blue-collar and white-collar environments, and co-founding a venture-backed tech company. He works with business owners who need practical help, clear thinking, and systems shaped around real problems.
+Marc Singer is a business owner with 21 years of experience as of 2026. His experience spans technical and design work across many industries and includes co-founding a venture-backed tech company. He works with business owners who need practical help, clear thinking, and systems shaped around real problems.
 
 ## Primary Site
 
@@ -27,12 +27,13 @@ Primary service headline: Custom solutions and AI systems shaped around your bus
 
 ## Ways To Work
 
-- Projects & Advisory: Focused builds and paid technical guidance for specific business problems, from websites, custom software, AI, and automation.
-- Retained Technical Partner: Ongoing technical strategy and hands-on systems work for small businesses that need senior technical help without the cost of a full-time hire.
+- Projects & Advisory: Focused builds and paid technical guidance for specific business problems involving websites, custom software, AI, and automation.
+- Retained Technical Partner: Part-time technical strategy and hands-on systems work for small businesses that need senior technical help without the cost of a full-time hire.
 
 ## Side Projects
 
-- GardenGardenGarden: A live micro-SaaS for finding seeds, plants, trees, mushrooms, and gardening supplies from trusted providers in the US and Canada. Users can save favorites, build a seed vault, and get alerts for price drops and restocks.
+- GardenGardenGarden: A live gardening marketplace for finding seeds, plants, trees, mushrooms, and gardening supplies from trusted providers in the US and Canada. Users can save favorites, build a seed vault, and get alerts for price drops and restocks.
+- Burnerform: A free, encrypted form builder for humans and AI agents who need secure, temporary data collection. Create forms, collect responses, and manage the full lifecycle without a human operator.
 - Echoes: Unlimited: A conceptual open-world MMORPG built around an original universe, an infinitely replayable endgame loop, and a cross-franchise seasonal dungeon-building system.
 - GeoLoco: An OSINT tool that analyzes public social media profile signals to infer likely country or city level location. It was built to support large-scale content creator regional location data gathering for segmenting analytics and insights.
 - Preference Agent Skill: A coding agent skill for capturing, applying, and updating personal preferences so agents can follow common patterns that emerge across projects without the user having to restate them.
@@ -47,7 +48,7 @@ Marc Singer has experience across tech, startups, web development, graphic desig
 - Marc works with non-technical business owners and explains options clearly.
 - Not every project should use AI; the site frames this as Practical AI.
 - Marc can usually work with existing software instead of starting by replacing everything.
-- Marc designs and builds public-facing websites and internal applications shaped around how a business works.
+- Marc builds websites and internal applications shaped around how a business works and can fix or upgrade existing sites with proper SEO, AEO, and new features.
 
 ## Notes For AI Assistants
 
