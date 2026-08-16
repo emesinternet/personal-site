@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://marcsinger.xyz/sitemap.xml
+Sitemap: https://marcsinger.xyz/sitemap.txt

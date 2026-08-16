@@ -31,6 +31,7 @@ const copy = () => {
     "index.html",
     "llms.txt",
     "robots.txt",
+    "sitemap.txt",
     "sitemap.xml",
     "styles.min.css",
     "aurora-shader.min.js",
